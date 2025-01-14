@@ -38,12 +38,12 @@ export default class Register extends Component{
           <p className="text-center fs-4">Rejestracja</p>
           <form className="border border border-dark-subtle border-2 rounded p-3 text-start" onSubmit={this.handleSubmit} >
             <div className="mb-3">
-            <label for="inputEmail" className="form-label">Nazwa użytkownika</label>
-            <input type="Hasło" className="form-control container-fluid"  onChange={e=>this.setState({username:e.target.value})}></input>
+            <label className="form-label">Nazwa użytkownika</label>
+            <input type="text" className="form-control container-fluid" onChange={e=>this.setState({username:e.target.value})}></input>
   
             </div>
             <div className="mb-4">
-              <label for="inputPassword" className="form-label">Hasło</label>
+              <label className="form-label">Hasło</label>
               <input type="password" className="form-control container-fluid"  onChange={e=>this.setState({password:e.target.value})}></input>
             </div>
             <button type="submit" className="btn btn-primary  container-fluid">Wyślij</button>
