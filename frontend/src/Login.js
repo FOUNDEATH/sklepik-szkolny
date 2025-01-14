@@ -15,7 +15,6 @@ export default class Register extends Component{
   handleSubmit(e){ //funkcja wysyłania
     e.preventDefault();
     const{username,password} = this.state;
-    console.log(username,password);
     fetch("http://localhost:5000/login",{//łączenie się z backendem
       method:"POST",
       crossDomain:true,
@@ -47,14 +46,14 @@ export default class Register extends Component{
           <form className="border border border-dark-subtle border-2 rounded p-3 text-start" onSubmit={this.handleSubmit} >
             <div className="mb-3">
             <label for="inputEmail" className="form-label">Nazwa użytkownika</label>
-            <input type="password" className="form-control container-fluid"  onChange={e=>this.setState({username:e.target.value})}></input>
+            <input type="text" className="form-control container-fluid"  onChange={e=>this.setState({username:e.target.value})}></input>
   
             </div>
             <div className="mb-4">
-              <label for="inputPassword" className="form-label">Password</label>
+              <label for="inputPassword" className="form-label">Hasło</label>
               <input type="password" className="form-control container-fluid"  onChange={e=>this.setState({password:e.target.value})}></input>
             </div>
-            <button type="submit" className="btn btn-primary  container-fluid mb-1 text-center">Submit</button>
+            <button type="submit" className="btn btn-primary  container-fluid mb-1 text-center">Wyślij</button>
             <p className="text-center">Nie posiadasz konta? <a href="/register"className="bs-primary text-decoration-none">Rejestracja</a></p>
           </form>
         </header>

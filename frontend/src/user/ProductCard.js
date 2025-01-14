@@ -1,31 +1,12 @@
-//import './ProductCard.css'
-//function App() {
-//  return (
-//  
-//  <div class="card p-2">
-//    <img src="/images.jpg" class="card-img-top" alt="..."></img>
-//    <div class="card-body">
-//      <h5 class="card-title text-center">Burger</h5>
-//      <p class="card-text">Opis:</p>
-//      <p class="card-text">Cena:</p>
-//      <p class="card-text">Dostępność:</p>
-//      <a href="#" class="btn btn-success container-fluid">Dodaj do koszyka</a>
-//    </div>
-//  </div>
-//  );
-//}
-//export default App
-
 import React, { Component } from "react";
 
 export default class ProductList extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props) { 
+    super(props); //wymusza użycie React.Component, aby dziedzidzenie działało poprawnie
     this.state = {
       products: [], // Zainicjowane jako pusta tablica
     };
   }
-
   componentDidMount() {
     // Pobierz dane produktów
     fetch("http://localhost:5000/ProductGet", {
@@ -52,7 +33,6 @@ export default class ProductList extends Component {
         this.setState({ products: [] }); // Jeśli wystąpi błąd, ustaw pustą tablicę
       });
   }
-
   render() {
     const { products } = this.state;
 
@@ -65,14 +45,14 @@ export default class ProductList extends Component {
         productCards.push(
           <div key={i} className="card p-2 m-2" style={{ width: "18rem" }}>
             <img
-              src="images.jpg"  // Używamy domyślnego obrazu
+              src={product.imageUrl}  //nazwa pliku obrazu która odczytywana jest z bazy danych
               className="card-img-top"
               alt={product.productname}
             />
             <div className="card-body">
               <h5 className="card-title text-center">{product.productname}</h5>
               <p className="card-text">Opis: {product.productdesc}</p>
-              <p className="card-text">Cena: {product.productprice} PLN</p>
+              <p className="card-text">Cena: {product.productprice} zł</p>
               <p className="card-text">Ilość sztuk: {product.amount}</p>
               <button className="btn btn-success container-fluid">
                 Dodaj do koszyka

@@ -44,7 +44,7 @@ export default class Register extends Component{
           <p className="text-center fs-4">Dodawanie produktów</p>
           <form className="border border border-dark-subtle border-2 rounded p-3 text-start" onSubmit={this.handleSubmit} >
             <div className="mb-4">
-              <label className="form-label">Nazwa pliku (z rosszerzeniem)</label>
+              <label className="form-label">Nazwa pliku (z rozszerzeniem)</label>
               <input type="text" className="form-control container-fluid"  onChange={e=>this.setState({imageUrl:e.target.value})}></input>
               <p className="text-secondary">Należy wcześniej dodać zdjęcie do folderu public w projekcie</p>
             </div>

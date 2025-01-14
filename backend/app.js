@@ -8,9 +8,9 @@ const bcrypt = require("bcryptjs");
 
 const jwt=require("jsonwebtoken");
 
-const JWT_SECRET="9i8s7ydfah9d8fyha8nf*$%^YGH#"
+const JWT_SECRET="9i8s7ydfah9d8fyha8nf*$%^YGH#"//Token który jest przypisywany, dowolne znaki
 
-const mongoUrl = "mongodb+srv://admin:Password1@cluster0.xtozb.mongodb.net/";
+const mongoUrl = "mongodb+srv://admin:Password1@cluster0.xtozb.mongodb.net/"; //publiczny cluster, dostępny z każdego IP
 
 mongoose.connect(mongoUrl,{
   useNewUrlParser:true,
@@ -21,14 +21,12 @@ require("./userDetails.js")
 require("./ProductAdd.js")
 
 
-const User=mongoose.model("UserInfo");
+const User=mongoose.model("UserInfo");//używa modelu UserInfo, zawarty jest w userDetails.js
 app.post("/register",async(req,res)=>{ //Fukcja rejestruąca użytkownika
   const{username,password} = req.body; //odbiera podane dane przez użytkownika
-
-  const encryptedPassword=await bcrypt.hash(password, 10);
+  const encryptedPassword=await bcrypt.hash(password, 10);//szyfruje podane kasło
   try{
     const oldUser= await User.findOne({username}); //sprawdza czy podana wartość emailu już jest w bazie danych 
-
     if(oldUser){
         return res.send({error:"User Exists"});
     }
@@ -49,7 +47,7 @@ app.post("/ProductAdd",async(req,res)=>{ //Fukcja rejestruąca użytkownika
     const exitingproduct= await Product.findOne({productname}); //sprawdza czy podana wartość nazwy użytkownika już jest w bazie danych 
 
     if(exitingproduct){
-        return res.send({error:"User Exists"});
+        return res.send({error:"Product Exists"});
     }
     await Product.create({
       productname,

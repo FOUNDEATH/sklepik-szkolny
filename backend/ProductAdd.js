@@ -6,7 +6,7 @@ const ProductAddSchema = new mongoose.Schema( //szablon użytkownika
     password: String,
     productprice: String,
     productdesc: String,
-    ImageUrl: String,
+    imageUrl: String,
     amount: String
     },
     {  

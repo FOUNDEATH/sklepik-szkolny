@@ -1,6 +1,5 @@
 
 import React, {Component} from "react";
-
 export default class Register extends Component{
   constructor(props){ //odczytujemy wartość z formularza
     super(props);
@@ -8,19 +7,18 @@ export default class Register extends Component{
       username: "",
       password: "",
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this); //umożliwia użycie this w funkcji handleSubmit
   }
   handleSubmit(e){ //funkcja wysyłania
-    e.preventDefault();
+    e.preventDefault(); //zapobiega przeładowania strony po uzupełnieniu formularza
     const{username,password} = this.state;
-    console.log(username,password);
-    fetch("http://localhost:5000/register",{//łączenie się z backendem
+    fetch("http://localhost:5000/register",{//łączenie się z backendem, tam też wysyłamy dane
       method:"POST",
-      crossDomain:true,
+      crossDomain:true, //umożliwia łączenie się z poziomu wielu domen, aby działał frontend i backend
       headers:{
-        "Content-Type":"application/json",
-        Accept:"application/json",
-        "Acess-Control-Allow-Origin":"*",
+        "Content-Type":"application/json", //określamy jakiego typu chcemy dane
+        Accept:"application/json", //oczekujemy na odpowiedź w formacie JSON
+        "Acess-Control-Allow-Origin":"*", //zezwala na dostęp z różnych domen (frontend oraz backend)
       },
       body:JSON.stringify({
         username,
@@ -28,7 +26,7 @@ export default class Register extends Component{
       })
     }).then((res)=>res.json()) 
       .then((data)=>{
-      console.log(data, "userRegister");
+      console.log(data, "userRegister"); //wyświetlamy odpowiedź serwera w konsoli
     })
   }
 
@@ -40,15 +38,15 @@ export default class Register extends Component{
           <p className="text-center fs-4">Rejestracja</p>
           <form className="border border border-dark-subtle border-2 rounded p-3 text-start" onSubmit={this.handleSubmit} >
             <div className="mb-3">
-            <label for="inputEmail" className="form-label">Email adress</label>
-            <input type="password" className="form-control container-fluid"  onChange={e=>this.setState({username:e.target.value})}></input>
+            <label for="inputEmail" className="form-label">Nazwa użytkownika</label>
+            <input type="Hasło" className="form-control container-fluid"  onChange={e=>this.setState({username:e.target.value})}></input>
   
             </div>
             <div className="mb-4">
-              <label for="inputPassword" className="form-label">Password</label>
+              <label for="inputPassword" className="form-label">Hasło</label>
               <input type="password" className="form-control container-fluid"  onChange={e=>this.setState({password:e.target.value})}></input>
             </div>
-            <button type="submit" className="btn btn-primary  container-fluid">Submit</button>
+            <button type="submit" className="btn btn-primary  container-fluid">Wyślij</button>
             <p className="text-center">Posiadasz już konto? <a href="/login"className="bs-primary text-decoration-none">Logowanie</a></p>
           </form>
         </header>
